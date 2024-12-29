@@ -14,4 +14,4 @@ The following diagram taken directly from the book explain the overall workflow 
 - All task specific models (for example, classifier, chat bot etc. ) are derived by `fine-tuning foundation model` on small, labeled dataset.
 
 # Notes
-Ch-02: [data](./data/notes.md)
+Ch-02: [data](./data/README.md)

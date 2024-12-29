@@ -45,14 +45,14 @@ For example, for the text below, <br>
     `464 3797 ---> 3332` <br>
     `464 3797 3332 ---> 319` <br> and so on. <br>
     Everything left of the arrow (`--->`) refers to the input an LLM would receive (after tokenization) and word on right side is what LLM is supposed to predict.
-- Creating token embeddings.
+- Creating `token embeddings`.
     - After text tokens are converted into integer token ID's, next step is converting these token IDs into embedding vectors.
     - These embedded vectors are initialized randomly and learned during LLM training process.
     - [`torch.nn.Embedding`](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html) layer can be used to create token embeddings for LLM training.
         - It is a lookup table that stores embeddings of a fixed dictionary and size.
         - Since token embeddings is a simple lookup, irrespective of position of token within the sequence, same embeddings are picked.
     - Check `token_embeddings.py` module for code and explanation.
-- Creating position embeddings.
+- Creating `position embeddings`.
     - Token embeddings themselves are suitable input to LLM.
     - However, self-attention mechanism in LLM doesn't have a notion of position or order of tokens within a sequence and token embeddings are not position dependent.
     - To help self attention, it os helpful to inject additional position information into the LLM.
@@ -61,6 +61,8 @@ For example, for the text below, <br>
         - Emphasis of relative positional embeddings is on the relative position or distance between tokens.This means the model learns the relationships in terms of “how far apart” rather than “at which exact position.” The advantage here is that the model can generalize better to sequences of varying lengths, even if it hasn’t seen such lengths during training.
     - GPT uses absolute position embeddings that are optimized during training.
     - Check `final_embeddings.py` to see how token and position embeddings are added to get final embeddings.
+- Final input embeddings is position embeddings added to the token embeddings. <br>
+    `input_embeddings = token_embeddings + position_embeddings`
 
 
 
